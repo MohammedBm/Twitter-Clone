@@ -5,7 +5,8 @@ export default `
   }
 
   type Query {
-    getTweets: [Tweet]
+    getTweet(_id: ): Tweet 
+    getTweets: [  ]
   }
 
   schema {
