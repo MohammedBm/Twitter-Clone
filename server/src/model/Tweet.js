@@ -5,3 +5,4 @@ const TweetSchema = new Schema({
 });
 
 export default mongoose.model('Tweet', TweetSchema);
+const TweetSchema = new Schema({});
