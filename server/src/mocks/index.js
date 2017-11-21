@@ -1,6 +1,6 @@
 import faker from 'faker';
 
-import Tweet from '../model/Tweet';
+import Tweet from '../models/Tweet';
 
 const TWEETS_TOTAL = 10;
 
