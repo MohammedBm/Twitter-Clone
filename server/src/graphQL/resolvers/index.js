@@ -11,6 +11,6 @@ export default {
   Mutation: {
     createTweet: TweetResolvers.createTweet,
     updateTweet: TweetResolvers.updateTweet,
-    deleteTweet: TweetResolvers.deleteTweet
-  }
+    deleteTweet: TweetResolvers.deleteTweet,
+  },
 };
