@@ -3,6 +3,7 @@
 import bodyParser from 'body-parser';
 import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
 import { makeExecutableSchema } from 'graphql-tools';
+
 import typeDefs from '../graphql/schema';
 import resolvers from '../graphql/resolvers';
 import constants from './constants';
@@ -42,8 +43,8 @@ export default app => {
     graphqlExpress(req => ({
       schema,
       context: {
-        user: req.user
-      }
+        user: req.user,
+      },
     })),
   );
-}
+};
