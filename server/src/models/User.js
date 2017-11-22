@@ -4,19 +4,22 @@ import jwt from 'jsonwebtoken';
 
 import constants from '../config/constants';
 
-const UserSchema = new Schema({
-  username: {
-    type: String,
-    unique: true
+const UserSchema = new Schema(
+  {
+    username: {
+      type: String,
+      unique: true,
+    },
+    firstName: String,
+    lastName: String,
+    avatar: String,
+    password: String,
+    email: String,
   },
-  firstName: String,
-  lastName: String,
-  avatar: String,
-  password: String,
-  email: String
-}, { timestamps: true });
+  { timestamps: true },
+);
 
-UserSchema.pre('save', function (next) {
+UserSchema.pre('save', function(next) {
   if (this.isModified('password')) {
     this.password = this._hashPassword(this.password);
     return next();
@@ -40,6 +43,6 @@ UserSchema.methods = {
       constants.JWT_SECRET,
     );
   },
-}
+};
 
 export default mongoose.model('User', UserSchema);

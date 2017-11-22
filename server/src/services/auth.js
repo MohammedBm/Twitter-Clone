@@ -1,4 +1,5 @@
 import jwt from 'jsonwebtoken';
+
 import constants from '../config/constants';
 import User from '../models/User';
 
