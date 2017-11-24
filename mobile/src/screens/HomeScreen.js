@@ -1,14 +1,14 @@
-import React, { Component } from 'react'
+import React  from 'react'
 import styled from 'styled-components/native'
 import FeedCard from "../components/FeedCard/FeedCard";
 
 const Root = styled.View`
   flex: 1;
-  justifyContent: center; 
+  paddingTop: 5;
+  backgroundColor: #f2f2f2;
 `
 
-const T = styled.Text``
-
+const List = styled.ScrollView``
 
 class HomeScreen extends React.Component {
 
@@ -16,7 +16,26 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <Root>
-        <FeedCard />
+        <List>
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+          <FeedCard />
+        </List>
       </Root>
     )
   }
