@@ -5,3 +5,4 @@ export const colors = {
   LIGHT_GRAY: '#CAD0D6',
 };
 
+export const fakeAvatar = 'https://pbs.twimg.com/profile_images/888954171293974528/jP5dRUbc_400x400.jpg'
