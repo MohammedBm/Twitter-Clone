@@ -3,7 +3,12 @@ import { addNavigationHelpers, StackNavigator, TabNavigator } from 'react-naviga
 import { connect } from 'react-redux'
 import { FontAwesome } from '@expo/vector-icons'
 import HomeScreen from './screens/HomeScreen'
+import ExploreScreen from './screens/ExploreScreen'
+import NotificationScreen from './screens/NotificationScreen'
+import ProfileScreen from './screens/ProfileScreen'
 import { colors } from './utils/constants'
+
+const TAB_ICON_SIZE = 20;
 
 const Tabs = TabNavigator({
   Home: {
@@ -11,10 +16,37 @@ const Tabs = TabNavigator({
     navigationOptions: () => ({
       headerTitle: 'Home',
       tabBarIcon: ({ tintColor }) => (
-        <FontAwesome size={20} color={tintColor} name="home" />    
+        <FontAwesome size={TAB_ICON_SIZE} color={tintColor} name="home" />    
       )
     })
-  } 
+  },
+  Explore: {
+    screen: ExploreScreen,
+    navigationOptions: () => ({
+      headerTitle: 'Explore',
+      tabBarIcon: ({ tintColor }) => (
+        <FontAwesome size={TAB_ICON_SIZE} color={tintColor} name="search" />    
+      )
+    })
+  },
+  Notifications: {
+    screen: NotificationScreen,
+    navigationOptions: () => ({
+      headerTitle: 'Notifications',
+      tabBarIcon: ({ tintColor }) => (
+        <FontAwesome size={TAB_ICON_SIZE} color={tintColor} name="bell" />    
+      )
+    })
+  },
+  Profile: {
+    screen: ProfileScreen,
+    navigationOptions: () => ({
+      headerTitle: 'Profile',
+      tabBarIcon: ({ tintColor }) => (
+        <FontAwesome size={TAB_ICON_SIZE} color={tintColor} name="user" />    
+      )
+    })
+  },
 }, {
   lazy: true,
   tabBarPosition: 'bottom',

@@ -74,7 +74,7 @@ class FeedCardHeader extends React.Component {
               {firstName} {lastName}
             </MetaFullName>
             <MetaText style={{ marginLeft: 5 }}>
-              {username}
+              @{username}
             </MetaText>
           </MetaTopContainer>
           <MetaBottomContainer>
