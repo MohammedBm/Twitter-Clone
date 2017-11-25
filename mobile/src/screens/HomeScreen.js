@@ -34,7 +34,7 @@ class HomeScreen extends React.Component {
           <FeedCard />
           <FeedCard />
           <FeedCard />
-          <FeedCard />
+          <FeedCard />  
         </List>
       </Root>
     )

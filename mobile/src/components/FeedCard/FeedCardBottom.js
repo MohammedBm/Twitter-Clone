@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import { SimpleLineIcons, Entypo } from '@expo/vector-icons';
+import Touchable from '@appandflow/touchable';
 
 import { colors } from '../../utils/constants';
 
@@ -11,7 +12,9 @@ const Root = styled.View`
   flexDirection: row;
 `;
 
-const Button = styled.TouchableOpacity`
+const Button = styled(Touchable).attrs({
+  feedback: 'opacity',
+}) `
   flex: 1;
   flexDirection: row;
   alignItems: center;
