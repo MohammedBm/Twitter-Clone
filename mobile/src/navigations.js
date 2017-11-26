@@ -7,6 +7,7 @@ import ExploreScreen from './screens/ExploreScreen'
 import NotificationScreen from './screens/NotificationScreen'
 import ProfileScreen from './screens/ProfileScreen'
 import { colors } from './utils/constants'
+import AuthenticationScreen from './screens/AuthenticationScreen'
 
 const TAB_ICON_SIZE = 20;
 
@@ -89,13 +90,16 @@ class AppNavigator extends React.Component{
       dispatch: this.props.dispatch,
       state: this.props.nav,
     })
-
+    if(!this.props.user.isAuthenticated){
+      return <AuthenticationScreen />
+    }
     return <AppMainNav navigation={nav} />;
   }
 }
 
 export default connect(state => ({
   nav: state.nav,
+  user: state.user
 }))(AppNavigator);
 
 export const router = AppMainNav.router;
