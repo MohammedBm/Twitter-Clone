@@ -65,3 +65,4 @@ function FeedCardBottom() {
 }
 
 export default FeedCardBottom;
+  
