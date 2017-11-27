@@ -5,15 +5,15 @@ const Root = styled.View``
 
 const T = styled.Text``
 
-class NotificationScreen extends React.Component {
+class NotificationsScreen extends React.Component {
   state = {}
   render() {
     return (
       <Root>
-        <T>NotificationScreen</T>
+        <T>NotificationsScreen</T>
       </Root>
     )
   }
 }
 
-export default NotificationScreen;
+export default NotificationsScreen;
