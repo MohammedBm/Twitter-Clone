@@ -3,11 +3,12 @@ import styled from 'styled-components/native';
 import { MaterialIcons } from '@expo/vector-icons';
 import Touchable from '@appandflow/touchable';
 import { Platform, Keyboard, AsyncStorage } from 'react-native';
-import { graphql, compose } from 'react-apollo'
-import { connect } from "react-redux";
+import { graphql, compose } from 'react-apollo';
+import { connect } from 'react-redux';
+
 import { colors, fakeAvatar } from '../utils/constants';
-import SINGUP_MUTATION from '../graphql/mutations/signup'
-import Loading from "./Loading";
+import SIGNUP_MUTATION from '../graphql/mutations/signup';
+import Loading from '../components/Loading';
 import { login } from '../actions/user';
 
 const Root = styled(Touchable).attrs({
@@ -28,7 +29,7 @@ const Wrapper = styled.View`
 
 const BackButton = styled(Touchable).attrs({
   feedback: 'opacity',
-  hitSlop: { top: 20, bottom: 20, right: 20, left: 20 }
+  hitSlop: { top: 20, bottom: 20, right: 20, left: 20 },
 }) `
   justifyContent: center;
   alignItems: center;
@@ -103,31 +104,32 @@ class SignupForm extends Component {
   }
 
   _onSignupPress = async () => {
-    this.setState({  loading: true })
-    const { fullName, email, username, password } = this.state;
+    this.setState({ loading: true });
+
+    const { fullName, email, password, username } = this.state;
     const avatar = fakeAvatar;
 
-    const { data } = await this.props.mutate({
-      variables: {
-        fullName,
-        email,
-        password,
-        username,
-        avatar
-      }
-    });
-
     try {
-      await AsyncStorage.setItem('@twittermundoclone', data.signup.token)
+      const { data } = await this.props.mutate({
+        variables: {
+          fullName,
+          email,
+          password,
+          username,
+          avatar,
+        },
+      });
+      await AsyncStorage.setItem('@twitteryoutubeclone', data.signup.token);
+      this.setState({ loading: false });
       return this.props.login();
     } catch (error) {
-      throw error
+      throw error;
     }
-  }
+  };
 
   render() {
-    if( this.state.loading) {
-      return <Loading />
+    if (this.state.loading) {
+      return <Loading />;
     }
     return (
       <Root onPress={this._onOutsidePress}>
@@ -165,7 +167,10 @@ class SignupForm extends Component {
             />
           </InputWrapper>
         </Wrapper>
-        <ButtonConfirm onPress={this._onSignupPress} disabled={this._checkIfDisabled()}>
+        <ButtonConfirm
+          onPress={this._onSignupPress}
+          disabled={this._checkIfDisabled()}
+        >
           <ButtonConfirmText>Sign Up</ButtonConfirmText>
         </ButtonConfirm>
       </Root>
@@ -173,7 +178,6 @@ class SignupForm extends Component {
   }
 }
 
-export default compose(
-  graphql(SINGUP_MUTATION)(SignupForm),
-  connect(undefined, { login })
-)(SignupForm);
+export default compose(graphql(SIGNUP_MUTATION), connect(undefined, { login }))(
+  SignupForm,
+);

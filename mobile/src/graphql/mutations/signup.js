@@ -7,8 +7,10 @@ export default gql`
     $password: String!
     $username: String!
     $avatar: String
-  ) {signup( fullName: $fullName
-email: $email
+  ) {
+    signup(
+      fullName: $fullName
+      email: $email
       password: $password
       username: $username
       avatar: $avatar
