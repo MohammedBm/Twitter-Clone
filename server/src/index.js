@@ -1,23 +1,11 @@
 /* eslint-disable no-console */
 
 import express from 'express';
-import {
-  createServer
-} from 'http';
-import {
-  graphiqlExpress,
-  graphqlExpress
-} from 'apollo-server-express';
-import {
-  makeExecutableSchema
-} from 'graphql-tools';
-import {
-  SubscriptionServer
-} from 'subscriptions-transport-ws';
-import {
-  execute,
-  subscribe
-} from 'graphql';
+import { createServer } from 'http';
+import { graphiqlExpress, graphqlExpress } from 'apollo-server-express';
+import { makeExecutableSchema } from 'graphql-tools';
+import { SubscriptionServer } from 'subscriptions-transport-ws';
+import { execute, subscribe } from 'graphql';
 import './config/db';
 import typeDefs from './graphql/schema';
 import resolvers from './graphql/resolvers';
@@ -64,9 +52,9 @@ graphQLServer.listen(constants.PORT, err => {
       execute,
       subscribe
     }, {
-      server: graphQLServer,
-      path: constants.SUBSCRIPTIONS_PATH
-    })
+        server: graphQLServer,
+        path: constants.SUBSCRIPTIONS_PATH
+      })
 
     console.log(`App listen to port: ${constants.PORT}`);
   }
