@@ -1,18 +1,18 @@
-import React from 'react';
+import React, { Component } from 'react';
 import styled from 'styled-components/native';
 
-const Root = styled.View``
+const Root = styled.View``;
 
 const T = styled.Text``
 
-class ProfileScreen extends React.Component {
-  state = {}
+class ProfileScreen extends Component {
+  state = {  }
   render() {
     return (
       <Root>
-        <T>ProfileScreen</T>
+        <T>Profile</T>
       </Root>
-    )
+    );
   }
 }
 

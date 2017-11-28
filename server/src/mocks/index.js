@@ -18,12 +18,11 @@ export default async () => {
         lastName: faker.name.lastName(),
         email: faker.internet.email(),
         avatar: `https://randomuser.me/api/portraits/women/${i}.jpg`,
-        password: 'password123',
+        password: 'password123'
       });
 
       await Array.from({ length: TWEETS_TOTAL }).forEach(
-        async () =>
-          await Tweet.create({ text: faker.lorem.sentence(), user: user._id }),
+        async () => await Tweet.create({ text: faker.lorem.sentence(), user: user._id }),
       );
     });
   } catch (error) {

@@ -1,7 +1,6 @@
 import React from 'react';
 import styled from 'styled-components/native';
 import distanceInWordsToNow from 'date-fns/distance_in_words_to_now';
-
 import { fakeAvatar } from '../../utils/constants';
 
 const AVATAR_SIZE = 40;

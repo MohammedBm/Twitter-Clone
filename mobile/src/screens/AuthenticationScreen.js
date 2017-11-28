@@ -18,7 +18,7 @@ const ButtonSignupText = styled.Text`
 
 const ButtonSignup = styled(Touchable).attrs({
   feedback: 'opacity'
-}) `
+})`
   height: 75;
   width: 150;
   backgroundColor: ${props => props.theme.PRIMARY};
@@ -49,7 +49,7 @@ const BottomTextContainer = styled.View`
 const ButtonLogin = styled(Touchable).attrs({
   feedback: 'opacity',
   hitSlop: { top: 20, bottom: 20, right: 20, left: 20 }
-}) `
+})`
   justifyContent: center;
   alignItems: center;
 `;

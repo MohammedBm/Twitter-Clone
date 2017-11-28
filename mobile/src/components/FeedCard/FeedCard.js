@@ -1,8 +1,7 @@
 import React from 'react';
-import styled from 'styled-components/native'
-
-import FeedCardHeader from './FeedCardHeader'
-import FeedCardBottom from './FeedCardBottom'
+import styled from 'styled-components/native';
+import FeedCardHeader from './FeedCardHeader';
+import FeedCardBottom from './FeedCardBottom';
 
 const Root = styled.View`
   minHeight: 180;
@@ -19,17 +18,17 @@ const Root = styled.View`
 const CardContentContainer = styled.View`
   flex: 1;
   padding: 10px 20px 10px 0px;
-`
+`;
+
 const CardContentText = styled.Text`
   fontSize: 14;
   textAlign: left;
   fontWeight: 500;
   color: ${props => props.theme.SECONDARY};
-`
+`;
 
-
-function FeedCard({ text, user, createdAt }){
-  return(
+function FeedCard({ text, user, createdAt, favoriteCount }) {
+  return (
     <Root>
       <FeedCardHeader {...user} createdAt={createdAt} />
       <CardContentContainer>
@@ -37,10 +36,9 @@ function FeedCard({ text, user, createdAt }){
           {text}
         </CardContentText>
       </CardContentContainer>
-      <FeedCardBottom />
+      <FeedCardBottom favoriteCount={favoriteCount} />
     </Root>
   )
 }
-
 
 export default FeedCard;
