@@ -1,4 +1,6 @@
-import mongoose, { Schema } from 'mongoose';
+import mongoose, {
+  Schema
+} from 'mongoose';
 
 const TweetSchema = new Schema({
   text: {
@@ -14,6 +16,29 @@ const TweetSchema = new Schema({
     type: Number,
     default: 0
   }
-}, { timestamps: true });
+}, {
+  timestamps: true
+});
+
+TweetSchema.statics = {
+  incFavoriteCount(tweetId) {
+    return this.findByIdAndUpdate(tweetId, {
+      $inc: {
+        favoriteCount: 1
+      }
+    }, {
+      new: true
+    });
+  },
+  decFavoriteCount(tweetId) {
+    return this.findByIdAndUpdate(tweetId, {
+      $inc: {
+        favoriteCount: -1
+      }
+    }, {
+      new: true
+    });
+  }
+}
 
 export default mongoose.model('Tweet', TweetSchema);
