@@ -1,9 +1,12 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
-import { Platform } from 'react-native';
+import { Platform, Keyboard } from 'react-native';
 import Touchable from '@appandflow/touchable';
-
+import { graphql, compose } from 'react-apollo';
+import { connect } from 'react-redux';
 import { colors } from '../utils/constants';
+import CREATE_TWEET_MUTATION from '../graphql/mutations/createTweet';
+import GET_TWEETS_QUERY from '../graphql/queries/getTweets';
 
 const Root = styled.View`
   backgroundColor: ${props => props.theme.WHITE};
@@ -24,7 +27,7 @@ const Input = styled.TextInput.attrs({
   maxLength: 140,
   selectionColor: Platform.OS === 'ios' && colors.PRIMARY,
   autoFocus: true,
-}) `
+})`
   height: 40%;
   width: 100%;
   fontSize: 18;
@@ -34,7 +37,7 @@ const Input = styled.TextInput.attrs({
 const TweetButton = styled(Touchable).attrs({
   feedback: 'opacity',
   hitSlop: { top: 20, left: 20, right: 20, bottom: 20 },
-}) `
+})`
   backgroundColor: ${props => props.theme.PRIMARY};
   justifyContent: center;
   alignItems: center;
@@ -66,8 +69,48 @@ class NewTweetScreen extends Component {
 
   _onChangeText = text => this.setState({ text });
 
+  _onCreateTweetPress = async () => {
+    const { user } = this.props;
+
+    await this.props.mutate({
+      variables: {
+        text: this.state.text
+      },
+      optimisticResponse: {
+        __typename: 'Mutation',
+        createTweet: {
+          __typename: 'Tweet',
+          text: this.state.text,
+          favoriteCount: 0,
+          _id: Math.round(Math.random() * -1000000),
+          createdAt: new Date(),
+          user: {
+            __typename: 'User',
+            username: user.username,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            avatar: user.avatar
+          }
+        },
+      },
+      update: (store, { data: { createTweet } }) => {
+        const data = store.readQuery({ query: GET_TWEETS_QUERY });
+        if (!data.getTweets.find(t => t._id === createTweet._id)) {
+          store.writeQuery({ query: GET_TWEETS_QUERY, data: { getTweets: [{ ...createTweet }, ...data.getTweets] } });
+        }
+      }
+    });
+
+    Keyboard.dismiss();
+    this.props.navigation.goBack(null);
+  }
+
   get _textLength() {
     return 140 - this.state.text.length;
+  }
+
+  get _buttonDisabled() {
+    return this.state.text.length < 5;
   }
 
   render() {
@@ -78,7 +121,7 @@ class NewTweetScreen extends Component {
           <TextLength>
             {this._textLength}
           </TextLength>
-          <TweetButton>
+          <TweetButton onPress={this._onCreateTweetPress} disabled={this._buttonDisabled}>
             <TweetButtonText>Tweet</TweetButtonText>
           </TweetButton>
         </Wrapper>
@@ -87,4 +130,7 @@ class NewTweetScreen extends Component {
   }
 }
 
-export default NewTweetScreen;
+export default compose(
+  graphql(CREATE_TWEET_MUTATION),
+  connect(state => ({ user: state.user.info }))
+)(NewTweetScreen);

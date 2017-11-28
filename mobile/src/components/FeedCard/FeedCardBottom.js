@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components/native';
 import { SimpleLineIcons, Entypo } from '@expo/vector-icons';
 import Touchable from '@appandflow/touchable';
-
 import { colors } from '../../utils/constants';
 
 const ICON_SIZE = 20;
@@ -14,7 +13,7 @@ const Root = styled.View`
 
 const Button = styled(Touchable).attrs({
   feedback: 'opacity',
-}) `
+})`
   flex: 1;
   flexDirection: row;
   alignItems: center;
@@ -28,10 +27,9 @@ const ButtonText = styled.Text`
   color: ${props => props.theme.LIGHT_GRAY};
 `;
 
-const favoriteCount = 3;
 const isFavorited = false;
 
-function FeedCardBottom() {
+function FeedCardBottom({ favoriteCount }) {
   return (
     <Root>
       <Button>
@@ -65,4 +63,3 @@ function FeedCardBottom() {
 }
 
 export default FeedCardBottom;
-  

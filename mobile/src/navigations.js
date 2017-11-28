@@ -7,17 +7,14 @@ import {
 import { Keyboard } from 'react-native';
 import { connect } from 'react-redux';
 import { FontAwesome, SimpleLineIcons, EvilIcons } from '@expo/vector-icons';
-
 import HomeScreen from './screens/HomeScreen';
 import ExploreScreen from './screens/ExploreScreen';
 import NotificationsScreen from './screens/NotificationsScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import AuthenticationScreen from './screens/AuthenticationScreen';
 import NewTweetScreen from './screens/NewTweetScreen';
-
 import HeaderAvatar from './components/HeaderAvatar';
 import ButtonHeader from './components/ButtonHeader';
-
 import { colors } from './utils/constants';
 
 const TAB_ICON_SIZE = 20;
