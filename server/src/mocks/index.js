@@ -1,4 +1,5 @@
 import faker from 'faker';
+
 import Tweet from '../models/Tweet';
 import User from '../models/User';
 
