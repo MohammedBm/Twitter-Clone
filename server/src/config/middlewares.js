@@ -22,4 +22,8 @@ async function auth(req, res, next) {
 export default app => {
   app.use(bodyParser.json());
   app.use(auth);
+  app.use(( req, res, next ) => {
+    console.log(req, res)
+    next();
+  })
 }

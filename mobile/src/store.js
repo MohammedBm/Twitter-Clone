@@ -4,6 +4,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { AsyncStorage } from 'react-native';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import ApolloClient, { createNetworkInterface } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http'
 import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import { SubscriptionClient, addGraphQLSubscriptions } from 'subscriptions-transport-ws';
@@ -26,7 +27,7 @@ networkInterface.use([{
     try {
       const token = await AsyncStorage.getItem('@twitteryoutubeclone');
       if (token != null) {
-        req.options.headers.authorization = `Bearer ${token}` || null;  
+        req.options.headers.authorization = `Bearer ${token}` || null;
       }
     } catch (error) {
       throw error;
@@ -43,6 +44,7 @@ const networkInterfaceWithSubs = addGraphQLSubscriptions(
 
 export const client = new ApolloClient({
   networkInterface: networkInterfaceWithSubs
+  // link: new HttpLink()
 });
 
 const middlewares = [client.middleware(), thunk, createLogger()];

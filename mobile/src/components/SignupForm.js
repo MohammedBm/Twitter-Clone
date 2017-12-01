@@ -118,9 +118,10 @@ class SignupForm extends Component {
           avatar,
         },
       });
-      await AsyncStorage.setItem('@twitteryoutubeclone', data.signup.token);
-      this.setState({ loading: false });
-      return this.props.login();
+      console.log(data)
+      // await AsyncStorage.setItem('@twitteryoutubeclone', data.signup.token);
+      // this.setState({ loading: false });
+      // return this.props.login();
     } catch (error) {
       throw error;
     }
