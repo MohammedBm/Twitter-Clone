@@ -8,6 +8,7 @@ import { getUserInfo } from '../actions/user';
 import GET_TWEETS_QUERY from '../graphql/queries/getTweets';
 import ME_QUERY from '../graphql/queries/me';
 import TWEET_ADDED_SUBSCRIPTION from '../graphql/subscriptions/tweetAdded';
+import TWEET_FAVORITED_SUBSCRIPTION from '../graphql/subscriptions/tweetFavorited';
 
 const Root = styled.View`
   flex: 1;
@@ -28,12 +29,35 @@ class HomeScreen extends Component {
         if (!prev.getTweets.find(t => t._id === newTweet._id)) {
           return {
             ...prev,
-            getTweets: [{ ...newTweet }, ...prev.getTweets]
-          }
+            getTweets: [{ ...newTweet }, ...prev.getTweets],
+          };
         }
 
         return prev;
-      }
+      },
+    });
+
+    this.props.data.subscribeToMore({
+      document: TWEET_FAVORITED_SUBSCRIPTION,
+      updateQuery: (prev, { subscriptionData }) => {
+        if (!subscriptionData.data) {
+          return prev;
+        }
+
+        const newTweet = subscriptionData.data.tweetFavorited;
+        return {
+          ...prev,
+          getTweets: prev.getTweets.map(
+            tweet =>
+              tweet._id === newTweet._id
+                ? {
+                    ...tweet,
+                    favoriteCount: newTweet.favoriteCount,
+                  }
+                : tweet,
+          ),
+        };
+      },
     });
   }
 
@@ -44,18 +68,25 @@ class HomeScreen extends Component {
   _getUserInfo = async () => {
     const { data: { me } } = await this.props.client.query({ query: ME_QUERY });
     this.props.getUserInfo(me);
-  }
+  };
 
-  _renderItem = ({ item }) => <FeedCard {...item} />
+  _renderItem = ({ item }) => <FeedCard {...item} />;
+
+  _renderPlaceholder = () => <FeedCard placeholder isLoaded={this.props.data.loading} />
 
   render() {
     const { data } = this.props;
     if (data.loading) {
       return (
         <Root>
-          <ActivityIndicator size="large" />
+          <FlatList
+            contentContainerStyle={{ alignSelf: 'stretch' }}
+            data={[1, 2, 3]}
+            renderItem={this._renderPlaceholder}
+            keyExtractor={item => item}
+          />
         </Root>
-      )
+      );
     }
     return (
       <Root>
@@ -70,7 +101,8 @@ class HomeScreen extends Component {
   }
 }
 
-export default withApollo(compose(
-  connect(undefined, { getUserInfo }),
-  graphql(GET_TWEETS_QUERY)
-)(HomeScreen));
+export default withApollo(
+  compose(connect(undefined, { getUserInfo }), graphql(GET_TWEETS_QUERY))(
+    HomeScreen,
+  ),
+);

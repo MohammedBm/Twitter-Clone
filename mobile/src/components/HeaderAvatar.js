@@ -3,9 +3,7 @@ import styled from 'styled-components/native';
 import { connect } from 'react-redux';
 import { withApollo } from 'react-apollo';
 import { connectActionSheet } from '@expo/react-native-action-sheet';
-
 import { logout } from '../actions/user';
-
 import Loading from './Loading';
 import ButtonHeader from './ButtonHeader';
 

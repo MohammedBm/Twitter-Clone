@@ -13,7 +13,7 @@ const Root = styled.View`
 
 const Button = styled(Touchable).attrs({
   feedback: 'opacity',
-})`
+}) `
   flex: 1;
   flexDirection: row;
   alignItems: center;
@@ -27,9 +27,7 @@ const ButtonText = styled.Text`
   color: ${props => props.theme.LIGHT_GRAY};
 `;
 
-const isFavorited = false;
-
-function FeedCardBottom({ favoriteCount }) {
+function FeedCardBottom({ favoriteCount, onFavoritePress, isFavorited }) {
   return (
     <Root>
       <Button>
@@ -39,16 +37,16 @@ function FeedCardBottom({ favoriteCount }) {
           color={colors.LIGHT_GRAY}
         />
         <ButtonText>
-          {favoriteCount}
+          0
         </ButtonText>
       </Button>
       <Button>
         <Entypo name="retweet" color={colors.LIGHT_GRAY} size={ICON_SIZE} />
         <ButtonText>
-          {favoriteCount}
+          0
         </ButtonText>
       </Button>
-      <Button>
+      <Button onPress={onFavoritePress}>
         <Entypo
           name="heart"
           color={isFavorited ? 'red' : colors.LIGHT_GRAY}

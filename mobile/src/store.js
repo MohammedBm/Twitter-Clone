@@ -26,7 +26,7 @@ networkInterface.use([{
     try {
       const token = await AsyncStorage.getItem('@twitteryoutubeclone');
       if (token != null) {
-        req.options.headers.authorization = `Bearer ${token}` || null;
+        req.options.headers.authorization = `Bearer ${token}` || null;  
       }
     } catch (error) {
       throw error;

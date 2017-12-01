@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components/native';
 import Touchable from '@appandflow/touchable';
-
 import SignupForm from '../components/SignupForm';
 
 const Root = styled.View`

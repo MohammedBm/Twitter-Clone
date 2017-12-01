@@ -27,7 +27,7 @@ const Input = styled.TextInput.attrs({
   maxLength: 140,
   selectionColor: Platform.OS === 'ios' && colors.PRIMARY,
   autoFocus: true,
-}) `
+})`
   height: 40%;
   width: 100%;
   fontSize: 18;
@@ -37,7 +37,7 @@ const Input = styled.TextInput.attrs({
 const TweetButton = styled(Touchable).attrs({
   feedback: 'opacity',
   hitSlop: { top: 20, left: 20, right: 20, bottom: 20 },
-}) `
+})`
   backgroundColor: ${props => props.theme.PRIMARY};
   justifyContent: center;
   alignItems: center;

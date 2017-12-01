@@ -1,17 +1,8 @@
 {
-<<<<<<< HEAD
   "expoServerPort": 19000,
+  "expoServerNgrokUrl": "https://pk-ia9.mohmedbm.mobile.exp.direct",
+  "packagerNgrokUrl": "https://packager.pk-ia9.mohmedbm.mobile.exp.direct",
+  "ngrokPid": 16556,
   "packagerPort": 19001,
-  "packagerPid": 12416,
-  "expoServerNgrokUrl": "https://3n-66d.mohmedbm.mobile.exp.direct",
-  "packagerNgrokUrl": "https://packager.3n-66d.mohmedbm.mobile.exp.direct",
-  "ngrokPid": 12440
-=======
-  "expoServerPort": 19002,
-  "packagerPort": 19004,
-  "packagerPid": 15211,
-  "expoServerNgrokUrl": "https://3n-66d.mohmedbm.mobile.exp.direct",
-  "packagerNgrokUrl": "https://packager.3n-66d.mohmedbm.mobile.exp.direct",
-  "ngrokPid": 15226
->>>>>>> b1613cba488d9be953a2012e094a593d20fc5a6c
+  "packagerPid": 16531
 }
