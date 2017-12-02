@@ -1,17 +1,17 @@
 import { gql } from 'react-apollo';
 
 export default gql`
-  {
-    getTweets {
-      text
+  mutation createTweet($text: String!) {
+    createTweet(text: $text) {
+      favoriteCount
       _id
       createdAt
-      favoriteCount
+      text
       user {
-        username
         avatar
-        lastName
+        username
         firstName
+        lastName
       }
     }
   }
