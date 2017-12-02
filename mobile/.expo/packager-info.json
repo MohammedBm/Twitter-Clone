@@ -1,8 +1,8 @@
 {
-  "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 7596,
-  "expoServerNgrokUrl": "https://3n-66d.mohmedbm.mobile.exp.direct",
-  "packagerNgrokUrl": "https://packager.3n-66d.mohmedbm.mobile.exp.direct",
-  "ngrokPid": 7616
+  "expoServerPort": null,
+  "packagerPort": null,
+  "packagerPid": null,
+  "expoServerNgrokUrl": null,
+  "packagerNgrokUrl": null,
+  "ngrokPid": null
 }
